@@ -41,3 +41,14 @@ A full-stack web application designed for managing employees and tasks within an
 ```bash
 cd backend
 node server.js
+
+## 📸 Screenshots
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Admin Dashboard
+![Admin](screenshots/admin.png)
+
+### Employee Dashboard
+![Employee](screenshots/employee.png)
