@@ -34,14 +34,6 @@ A full-stack web application designed for managing employees and tasks within an
 - Database: MongoDB
 
 ---
-
-## ▶️ How to Run
-
-### Backend
-```bash
-cd backend
-node server.js
-
 ## 📸 Screenshots
 
 ### Login Page
@@ -52,3 +44,10 @@ node server.js
 
 ### Employee Dashboard
 ![Employee](screenshots/employee.png)
+
+## ▶️ How to Run
+
+### Backend
+```bash
+cd backend
+node server.js
