@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+
+    <h2>💎 Admin Panel</h2>
+
+    <input id="task" placeholder="Task title">
+
+    <select id="users"></select>
+
+    <button onclick="assignTask()">Assign Task</button>
+
+    <h3>Employees</h3>
+    <div id="userList"></div>
+
+    <button onclick="logout()" class="secondary">Logout</button>
+
+</div>
+
+<script>
+let adminId = localStorage.getItem("userId");
+
+async function loadUsers() {
+    let res = await fetch("http://localhost:3000/users");
+    let users = await res.json();
+
+    let select = document.getElementById("users");
+    let list = document.getElementById("userList");
+
+    select.innerHTML = "";
+    list.innerHTML = "";
+
+    users.forEach(u => {
+        select.innerHTML += `<option value="${u._id}">${u.username}</option>`;
+        list.innerHTML += `<div class="task">👤 ${u.username}</div>`;
+    });
+}
+
+async function assignTask() {
+    let title = document.getElementById("task").value;
+    let assignedTo = document.getElementById("users").value;
+
+    await fetch("http://localhost:3000/tasks", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+            title,
+            assignedTo,
+            assignedBy: adminId
+        })
+    });
+
+    alert("Task assigned 💎");
+}
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+
+loadUsers();
+</script>
+
+</body>
+</html>

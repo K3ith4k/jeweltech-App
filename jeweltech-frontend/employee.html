@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+
+    <h2>💎 My Tasks</h2>
+
+    <div id="tasks"></div>
+
+    <button onclick="logout()" class="secondary">Logout</button>
+
+</div>
+
+<script>
+let userId = localStorage.getItem("userId");
+
+async function loadTasks() {
+    let res = await fetch(`http://localhost:3000/tasks/${userId}`);
+    let tasks = await res.json();
+
+    let html = "";
+
+    tasks.forEach(t => {
+        html += `
+        <div class="task">
+            ${t.title}
+            <span class="status ${t.status}">${t.status}</span>
+        </div>`;
+    });
+
+    document.getElementById("tasks").innerHTML = html;
+}
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+
+loadTasks();
+</script>
+
+</body>
+</html>

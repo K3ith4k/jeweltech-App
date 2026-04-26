@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JewelTech Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>💎 JewelTech System</h1>
+        <p>Login to continue</p>
+
+        <input id="username" placeholder="Username">
+        <input id="password" type="password" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+
+    </div>
+
+    <script>
+        async function login() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (!username || !password) {
+                alert("Please fill all fields");
+                return;
+            }
+
+            console.log("Sending login request...");
+
+            try {
+                let res = await fetch("http://localhost:3000/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password
+                    })
+                });
+
+                console.log("Status:", res.status);
+
+                let data = await res.json();
+                console.log("Response:", data);
+
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+
+                localStorage.setItem("userId", data.userId);
+                localStorage.setItem("role", data.role);
+
+                if (data.role === "admin") {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "employee.html";
+                }
+
+            } catch (err) {
+                console.error(err);
+                alert("Server not reachable. Is backend running?");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
