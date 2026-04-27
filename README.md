@@ -2,7 +2,7 @@
 
 A full-stack web application designed for managing employees and tasks within an organization.
 
-🚀 Features
+🚀 Features of the a jewelTexh Organizational system 
 
 - Role-based authentication (Admin & Employee)
 - Admin dashboard for assigning tasks
