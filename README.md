@@ -2,7 +2,7 @@
 
 A full-stack web application designed for managing employees and tasks within an organization.
 
-🚀 Features of the a jewelTech Organizational system 
+🚀 Features of the jewelTech Organizational system 
 
 - Role-based authentication (Admin & Employee)
 - Admin dashboard for assigning tasks
@@ -15,7 +15,7 @@ A full-stack web application designed for managing employees and tasks within an
  🧑‍💼 User Roles
 Admin
 - Create and assign tasks to employees
-- View system activity
+- View system activities 
 
 Employee
 - View assigned tasks
